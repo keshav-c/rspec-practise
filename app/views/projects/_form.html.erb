@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :due_on %>
-    <%= form.date_select :due_on %>
+    <%= form.date_select :due_on, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
+    <% cancel_path = (project.persisted? ? project_path(project) : projects_path) %>
+    <%= link_to "Cancel", cancel_path, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>
