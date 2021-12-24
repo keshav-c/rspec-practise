@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   
   resources :projects do
     resources :notes
+    resources :tasks do
+      member do
+        post :toggle
+      end
+    end
   end
   root "home#index"
 end
