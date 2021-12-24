@@ -10,7 +10,26 @@ class User < ApplicationRecord
   has_many :projects
   has_many :notes
 
+  before_save :ensure_authentication_token
+
   def name
     [first_name, last_name].join(" ")
+  end
+
+  private
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
+  def generate_authentication_token
+    # loop until a unique token is created 
+    loop do
+      token = Devise.friendly_token
+      # return generated unique token
+      break token unless User.where(authentication_token: token).first
+    end
   end
 end
