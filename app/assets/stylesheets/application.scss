@@ -18,3 +18,30 @@
 .completed {
   text-decoration: line-through;
 }
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.task-actions {
+  text-align: right;
+}
+
+.task {
+  label {
+    font-weight: normal;
+  }
+}
+
+.note {
+  margin-bottom: 50px;
+}
+
+.note-details {
+  font-weight: bold;
+}
