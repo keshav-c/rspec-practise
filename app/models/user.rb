@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :notes
 
   before_save :ensure_authentication_token
+  after_create :send_welcome_email
 
   def name
     [first_name, last_name].join(" ")
@@ -31,5 +32,9 @@ class User < ApplicationRecord
       # return generated unique token
       break token unless User.where(authentication_token: token).first
     end
+  end
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
   end
 end
