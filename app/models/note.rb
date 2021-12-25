@@ -5,6 +5,8 @@ class Note < ApplicationRecord
   # create a user_name method to get owner's full name
   delegate :name, to: :user, prefix: true
 
+  validates :message, presence: true
+
   scope :search, ->(term) {
     where("message LIKE ?", "%#{term}%")
   }
