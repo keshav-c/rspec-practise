@@ -5,7 +5,7 @@ class NotesController < ApplicationController
 
   # GET /project/:id/notes
   def index
-    @notes = @project.notes
+    @notes = @project.notes.search(params[:term])
   end
 
   # GET /notes/1 or /notes/1.json
