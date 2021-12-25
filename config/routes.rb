@@ -12,5 +12,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :api do
+    resources :projects
+  end
+
   root "home#index"
 end
