@@ -8,6 +8,6 @@ class Note < ApplicationRecord
   validates :message, presence: true
 
   scope :search, ->(term) {
-    where("message LIKE ?", "%#{term}%")
+    where("LOWER(message) LIKE ?", "%#{term.downcase}%")
   }
 end
