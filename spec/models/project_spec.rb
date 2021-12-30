@@ -31,4 +31,25 @@ RSpec.describe Project, type: :model do
     other_project = other_user.projects.build(name: "Test Project")
     expect(other_project).to be_valid
   end
+
+  # The be_late matcher is not built in. It is created and can be used
+  # because of the late? method (* That returns a boolean *) defined on
+  # the Project class
+
+  describe "late status" do
+    it "is late when the due date is past today" do
+      project = FactoryBot.create(:project_due_yesterday)
+      expect(project).to be_late
+    end
+
+    it "is on time when the due date is today" do
+      project = FactoryBot.create(:project_due_today)
+      expect(project).not_to be_late
+    end
+
+    it "is on time when the due date is in the future" do
+      project = FactoryBot.create(:project_due_tomorrow)
+      expect(project).not_to be_late
+    end
+  end
 end
