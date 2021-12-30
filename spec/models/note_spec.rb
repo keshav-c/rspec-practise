@@ -13,8 +13,6 @@ RSpec.describe Note, type: :model do
 
   it "generates associated data from a factory" do
     note = FactoryBot.create(:note)
-    puts "This note's project is #{note.project.inspect} "
-    puts "This note's user is #{note.user.inspect} "
   end
 
   it "is valid with a user, project, and message" do
