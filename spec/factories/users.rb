@@ -19,5 +19,9 @@ FactoryBot.define do
       email { "k@v.c" }
       password { "password" }
     end
+
+    trait :with_project_named_test do
+      after(:create) { |user| create(:project, name: "Test Project", owner: user) }
+    end
   end
 end
