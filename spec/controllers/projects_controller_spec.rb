@@ -53,6 +53,8 @@ RSpec.describe ProjectsController, type: :controller do
       before do
         @user = FactoryBot.create(:user)
         # Why factorybot allows creation of duplicate records like this?
+        # Answer: the records are not duplicate. The sequence method in the 
+        # users factory generates emails with autoincrementing addresses
         other_user = FactoryBot.create(:user)
         @project = FactoryBot.create(:project, owner: other_user)
       end
