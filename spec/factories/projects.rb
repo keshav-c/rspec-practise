@@ -19,6 +19,10 @@ FactoryBot.define do
       due_on { 1.day.from_now }
     end
 
+    trait :invalid do
+      name { nil }
+    end
+
     # The with_notes trait will add 5 new notes to newly created project.
     # create callback is called only for project factoryobject created with the
     # with_notes trait. This way test execution is not slowed down.
