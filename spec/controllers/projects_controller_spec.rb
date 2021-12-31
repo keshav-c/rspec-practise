@@ -67,6 +67,27 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe "#new" do
+    context "as an authenticated user" do
+      before do
+        @user = FactoryBot.create(:user)
+      end
+
+      it "responds successfully" do
+        sign_in @user
+        get :new
+        expect(response).to be_successful
+      end
+    end
+
+    context "as a guest user" do
+      it "redirects to the sign in page" do
+        get :new
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
+
   describe "#create" do
     context "as an authenticated user" do
       before do
